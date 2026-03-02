@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script>
+    const password = "yourpassword";
+    const input = prompt("Enter password:");
+    if (input !== password) {
+      document.body.innerHTML = "<h1>Access Denied</h1>";
+      document.body.style.textAlign = "center";
+    }
+  </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Window Cleaning Pricing Calculator</title>
