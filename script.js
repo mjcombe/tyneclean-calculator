@@ -1,7 +1,8 @@
 /**
- * Window Cleaning Pricing Calculator - FINAL CLEAN VERSION
- * Keeps original logic + adds new inputs safely
+ * Window Cleaning Pricing Calculator - FIXED VERSION
+ * Stable, safe, and fully compatible with your HTML
  */
+
 document.addEventListener("DOMContentLoaded", () => {
 
 const pricingData = {
@@ -18,8 +19,8 @@ const pricingData = {
 };
 
 const specialistPricing = {
-    gutter: { semi: 110, detached34: 130, detached5: 160, modifier: 20 },
-    fascia: { semi: 110, detached34: 140, detached5: 170, modifier: 20 },
+    gutter: { semi: 110, detached34: 130, detached5: 160 },
+    fascia: { semi: 110, detached34: 140, detached5: 170 },
     conservatoryRoof: { semi: 110, detached34: 140, detached5: 170 }
 };
 
@@ -40,26 +41,12 @@ const priceBox = document.getElementById('price-box');
 const priceValue = document.getElementById('price-value');
 const priceLabel = document.querySelector('.price-label');
 
-// NEW INPUTS
+// New inputs (safe)
 const skylights = document.getElementById('skylights');
 const bifolds = document.getElementById('bifolds');
-const rearAccess = document.getElementById('rear-access');
-const lockedGates = document.getElementById('locked-gates');
-const dog = document.getElementById('dog');
 
 /**
- * Get access details (for backend / future use)
- */
-function getAccessDetails() {
-    return {
-        rearAccess: rearAccess ? rearAccess.value : '',
-        lockedGates: lockedGates ? lockedGates.value : '',
-        dog: dog ? dog.value : ''
-    };
-}
-
-/**
- * CATEGORY HELPER
+ * Category helper
  */
 function getPropertyCategory() {
     const type = propertyTypeSelect.value;
@@ -71,13 +58,13 @@ function getPropertyCategory() {
 }
 
 /**
- * POSTCODE VALIDATION
+ * Postcode validation
  */
 function validatePostcode() {
     const value = postcodeInput.value.trim().toUpperCase();
     const regex = /^[A-Z]{1,2}[0-9][A-Z0-9]? ?[0-9][A-Z]{2}$/;
 
-    if (!regex.test(value)) {
+    if (!value || !regex.test(value)) {
         postcodeStatus.textContent = 'Enter a valid postcode';
         postcodeStatus.className = 'postcode-status status-error';
         return false;
@@ -97,7 +84,7 @@ function validatePostcode() {
 }
 
 /**
- * MAIN CALCULATION
+ * Main pricing logic
  */
 function calculatePrice() {
 
@@ -108,25 +95,27 @@ function calculatePrice() {
 
     const propertyType = propertyTypeSelect.value;
     const bedrooms = bedroomsSelect.value;
-    const frequency = Array.from(frequencyRadios).find(r => r.checked).value;
 
+    // 🔥 CRITICAL FIX (prevents crash)
+    if (!propertyType || !bedrooms || !pricingData[propertyType] || !pricingData[propertyType][bedrooms]) {
+        return;
+    }
+
+    const frequency = Array.from(frequencyRadios).find(r => r.checked).value;
     const data = pricingData[propertyType][bedrooms];
 
     let total = frequency === '4w' ? data.base4w : data.base8w;
 
-    // STANDARD EXTRAS
+    // Extras
     extrasCheckboxes.forEach(cb => {
         if (cb.checked) total += data.extras[cb.dataset.extra];
     });
 
-    // NEW ADDITIONS (pricing)
+    // New additions
     if (skylights && skylights.checked) total += 3;
     if (bifolds && bifolds.checked) total += 3;
 
-    // ACCESS (stored only)
-    const access = getAccessDetails();
-
-    // SPECIALIST
+    // Specialist
     let specialistTotal = 0;
     const category = getPropertyCategory();
 
@@ -146,7 +135,7 @@ function calculatePrice() {
         specialistTotal += price;
     });
 
-    // DISPLAY
+    // Display
     if (specialistTotal > 0) {
         priceLabel.innerHTML = `
             Recurring: £${total}<br>
@@ -162,7 +151,7 @@ function calculatePrice() {
 }
 
 /**
- * BEDROOM OPTIONS
+ * Bedroom options
  */
 function updateBedroomOptions() {
     bedroomsSelect.innerHTML = '';
@@ -177,14 +166,16 @@ function updateBedroomOptions() {
         opt.textContent = val + ' Bedrooms';
         bedroomsSelect.appendChild(opt);
     });
-
-    calculatePrice();
 }
 
 /**
- * EVENTS
+ * Events
  */
-propertyTypeSelect.addEventListener('change', updateBedroomOptions);
+propertyTypeSelect.addEventListener('change', () => {
+    updateBedroomOptions();
+    calculatePrice();
+});
+
 bedroomsSelect.addEventListener('change', calculatePrice);
 
 frequencyRadios.forEach(r => r.addEventListener('change', calculatePrice));
@@ -194,13 +185,17 @@ specialistFrequencies.forEach(s => s.addEventListener('change', calculatePrice))
 
 postcodeInput.addEventListener('input', calculatePrice);
 
-// NEW EVENTS
 if (skylights) skylights.addEventListener('change', calculatePrice);
 if (bifolds) bifolds.addEventListener('change', calculatePrice);
 
 /**
- * INIT
+ * Init
  */
 updateBedroomOptions();
-calculatePrice();
-    });
+
+// Delay ensures dropdown exists before calculation
+setTimeout(() => {
+    calculatePrice();
+}, 50);
+
+});
