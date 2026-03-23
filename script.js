@@ -2,6 +2,7 @@
  * Window Cleaning Pricing Calculator - FINAL CLEAN VERSION
  * Keeps original logic + adds new inputs safely
  */
+document.addEventListener("DOMContentLoaded", () => {
 
 const pricingData = {
     "semi-terrace": {
@@ -202,3 +203,4 @@ if (bifolds) bifolds.addEventListener('change', calculatePrice);
  */
 updateBedroomOptions();
 calculatePrice();
+    });
