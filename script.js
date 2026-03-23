@@ -1,6 +1,6 @@
 /**
- * Window Cleaning Pricing Calculator - FULL REVISED VERSION
- * Includes new inputs + improved robustness
+ * Window Cleaning Pricing Calculator - FINAL CLEAN VERSION
+ * Keeps original logic + adds new inputs safely
  */
 
 const pricingData = {
@@ -45,6 +45,17 @@ const bifolds = document.getElementById('bifolds');
 const rearAccess = document.getElementById('rear-access');
 const lockedGates = document.getElementById('locked-gates');
 const dog = document.getElementById('dog');
+
+/**
+ * Get access details (for backend / future use)
+ */
+function getAccessDetails() {
+    return {
+        rearAccess: rearAccess ? rearAccess.value : '',
+        lockedGates: lockedGates ? lockedGates.value : '',
+        dog: dog ? dog.value : ''
+    };
+}
 
 /**
  * CATEGORY HELPER
@@ -107,9 +118,12 @@ function calculatePrice() {
         if (cb.checked) total += data.extras[cb.dataset.extra];
     });
 
-    // NEW ADDITIONS
+    // NEW ADDITIONS (pricing)
     if (skylights && skylights.checked) total += 3;
     if (bifolds && bifolds.checked) total += 3;
+
+    // ACCESS (stored only)
+    const access = getAccessDetails();
 
     // SPECIALIST
     let specialistTotal = 0;
