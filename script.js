@@ -444,13 +444,6 @@ function calculatePrice() {
     // 1. Calculate Recurring Window Cleaning Price
     const data = pricingData[propertyType][bedrooms];
     let recurringTotal = frequency === '4w' ? data.base4w : data.base8w;
-
-    // NEW: window complexity add-ons (safe addition)
-const skylights = document.getElementById('skylights');
-const bifolds = document.getElementById('bifolds');
-
-if (skylights && skylights.checked) recurringTotal += 3;
-if (bifolds && bifolds.checked) recurringTotal += 3;
     
     extrasCheckboxes.forEach(checkbox => {
         if (checkbox.checked) {
@@ -539,12 +532,6 @@ frequencyRadios.forEach(radio => {
 extrasCheckboxes.forEach(checkbox => {
     checkbox.addEventListener('change', calculatePrice);
 });
-// NEW listeners (safe)
-const skylightsEl = document.getElementById('skylights');
-const bifoldsEl = document.getElementById('bifolds');
-
-if (skylightsEl) skylightsEl.addEventListener('change', calculatePrice);
-if (bifoldsEl) bifoldsEl.addEventListener('change', calculatePrice);
 
 specialistCheckboxes.forEach(checkbox => {
     checkbox.addEventListener('change', calculatePrice);
