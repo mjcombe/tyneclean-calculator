@@ -1,0 +1,6 @@
+{
+  "name": "Window Cleaning Pricing Calculator",
+  "description": "A professional, instant quote calculator for window cleaning services with postcode validation, dynamic window counting rules, and itemized specialist service breakdowns.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

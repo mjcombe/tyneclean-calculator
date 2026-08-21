@@ -148,6 +148,169 @@ select:focus, input[type="text"]:focus {
     box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
 }
 
+/* Custom Interactive Segmented Button Groups */
+.segmented-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.segmented-card-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 12px;
+    background: #ffffff;
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-main);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: center;
+    gap: 4px;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+}
+
+.segmented-card-btn:hover {
+    border-color: var(--primary);
+    background: rgba(14, 165, 233, 0.04);
+}
+
+.segmented-card-btn.active {
+    border-color: var(--primary);
+    background: rgba(14, 165, 233, 0.08);
+    color: var(--primary-dark);
+    box-shadow: 0 0 0 2px rgba(14, 165, 233, 0.2);
+}
+
+.segmented-card-icon {
+    font-size: 1.25rem;
+}
+
+/* Interactive Pill Groups (Bedrooms) */
+.pill-group {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.pill-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 8px;
+    background: #ffffff;
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--text-main);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: center;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+}
+
+.pill-btn:hover {
+    border-color: var(--primary);
+    background: rgba(14, 165, 233, 0.04);
+}
+
+.pill-btn.active {
+    border-color: var(--primary);
+    background: var(--primary);
+    color: #ffffff;
+    box-shadow: 0 4px 6px -1px rgba(14, 165, 233, 0.25);
+}
+
+/* Quick Window / Bifold Presets */
+.quick-presets-container {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.quick-presets-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.quick-preset-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.chip-btn {
+    padding: 6px 12px;
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--text-main);
+    cursor: pointer;
+    transition: all 0.15s ease;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+}
+
+.chip-btn:hover {
+    border-color: var(--primary);
+    color: var(--primary-dark);
+}
+
+.chip-btn.active {
+    background: var(--primary-dark);
+    border-color: var(--primary-dark);
+    color: #ffffff;
+}
+
+.bifold-quick-add {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 4px;
+    flex-wrap: wrap;
+}
+
+.bifold-add-btn {
+    padding: 6px 10px;
+    background: rgba(14, 165, 233, 0.08);
+    border: 1px solid rgba(14, 165, 233, 0.3);
+    border-radius: 6px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--primary-dark);
+    cursor: pointer;
+    transition: all 0.15s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.bifold-add-btn:hover {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+.bifold-add-btn:active {
+    transform: scale(0.96);
+}
+
 /* Frequency Radio Buttons */
 .radio-group {
     display: grid;
@@ -309,6 +472,14 @@ select:focus, input[type="text"]:focus {
     opacity: 1;
 }
 
+.specialist-pricing-display {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    text-align: right;
+    gap: 2px;
+}
+
 .checkbox-price, .specialist-price {
     font-size: 0.875rem;
     color: var(--text-muted);
@@ -317,6 +488,109 @@ select:focus, input[type="text"]:focus {
 
 .specialist-price {
     color: var(--primary);
+    font-weight: 700;
+    font-size: 0.9375rem;
+}
+
+.specialist-subsequent-price {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+/* Stepper Control for Windows */
+.stepper-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.stepper-label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-main);
+    margin-bottom: 0;
+}
+
+.stepper-control {
+    display: inline-flex;
+    align-items: center;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 4px;
+    width: 100%;
+    max-width: 220px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.stepper-btn {
+    width: 44px;
+    height: 44px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    user-select: none;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.stepper-btn:hover {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+.stepper-btn:active {
+    transform: scale(0.95);
+}
+
+.stepper-input {
+    flex: 1;
+    border: none !important;
+    text-align: center;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--primary-dark);
+    padding: 4px !important;
+    outline: none;
+    -moz-appearance: textfield;
+}
+
+.stepper-input::-webkit-outer-spin-button,
+.stepper-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.windows-info-note {
+    margin-top: 10px;
+    padding: 10px 14px;
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    line-height: 1.45;
+}
+
+.windows-info-note strong {
+    color: var(--text-main);
+}
+
+.windows-surcharge-alert {
+    display: inline-block;
+    margin-top: 4px;
+    font-weight: 600;
+    color: #0284c7;
 }
 
 /* Discount Info Box */
@@ -586,6 +860,27 @@ select:focus, input[type="text"]:focus {
     color: var(--text-main);
 }
 
+.summary-section {
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+}
+
+.summary-section:last-of-type {
+    border-bottom: none;
+    margin-bottom: 8px;
+    padding-bottom: 0;
+}
+
+.summary-section-title {
+    font-size: 0.8125rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--primary);
+    margin-bottom: 10px;
+}
+
 .summary-item {
     display: flex;
     justify-content: space-between;
@@ -594,15 +889,42 @@ select:focus, input[type="text"]:focus {
     color: var(--text-muted);
 }
 
+.summary-item.highlight {
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.summary-subtext {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    margin-top: 2px;
+}
+
 .summary-total {
     margin-top: 16px;
     padding-top: 16px;
-    border-top: 1px solid var(--border);
+    border-top: 2px solid var(--border);
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    gap: 8px;
     font-weight: 800;
     font-size: 1.25rem;
     color: var(--primary);
+}
+
+.summary-total-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.summary-total-subrow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-muted);
 }
 
 .form-footer {
@@ -675,30 +997,122 @@ select:focus, input[type="text"]:focus {
     display: none !important;
 }
 
-/* Price Display */
+/* Price Display & Breakdown */
 .price-box {
     margin-top: 24px;
     background: var(--card-bg);
-    padding: 16px 24px;
+    padding: 20px 24px;
     box-shadow: var(--shadow-lg);
     border: 2px solid var(--primary);
-    border-radius: 12px;
+    border-radius: 16px;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
     gap: 16px;
     z-index: 100;
     transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
 
-@media (max-width: 480px) {
-    .price-box {
+.price-box-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+}
+
+.price-box-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.price-breakdown-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.breakdown-card {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 14px;
+}
+
+.breakdown-card-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--primary);
+    margin-bottom: 8px;
+}
+
+.breakdown-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.875rem;
+    color: var(--text-main);
+    padding: 3px 0;
+}
+
+.breakdown-line.extra {
+    padding-left: 12px;
+    color: var(--text-muted);
+    font-size: 0.8125rem;
+}
+
+.breakdown-line.subtotal {
+    margin-top: 6px;
+    padding-top: 6px;
+    border-top: 1px dashed var(--border);
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.breakdown-line .item-price {
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.breakdown-badge {
+    display: inline-block;
+    background: #e0f2fe;
+    color: #0369a1;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-left: 6px;
+}
+
+.breakdown-desc {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 2px;
+    padding-left: 12px;
+}
+
+.price-box-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+}
+
+@media (max-width: 580px) {
+    .price-box-footer {
         flex-direction: column;
         text-align: center;
-        padding: 20px;
     }
     
-    .btn-primary {
+    .price-box-footer .btn-primary {
         width: 100%;
     }
 }
@@ -719,6 +1133,14 @@ select:focus, input[type="text"]:focus {
     font-size: 1.5rem;
     font-weight: 800;
     color: var(--primary);
+    line-height: 1.2;
+}
+
+.price-subvalue {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    margin-top: 2px;
 }
 
 @media (min-width: 640px) {
